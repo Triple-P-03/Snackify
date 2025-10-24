@@ -7,21 +7,19 @@
   <link rel="icon" href="logo.png" type="image/x-icon" />
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-black text-white font-sans">
-
-  <!-- Header -->
+<body class="bg-black">
   <header>
-    <nav class="flex flex-col md:flex-row justify-between items-center p-4 bg-white/90 text-black font-bold z-10">
-      <div class="flex items-center gap-2 mb-2 md:mb-0">
-        <img src="snacki.png" alt="logo" class="w-12 md:w-16" />
+    <nav class="flex justify-between items-center p-4 bg-white/90 font-bold relative z-10">
+      <div class="flex items-center gap-2">
+        <img src="snacki.png" alt="logo" width="60" />
         <div class="text-2xl">Snackify</div>
       </div>
-      <div class="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+      <div class="flex gap-6 justify-around">
         <a href="/">HOME</a>
         <a href="menu.html">Menu</a>
         <a href="#contact">Contact</a>
       </div>
-      <div class="mt-2 md:mt-0">
+      <div>
         <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-400">
           Order now
         </a>
@@ -29,54 +27,61 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <div class="bg-[url('back.jpg')] bg-cover bg-center w-full text-white min-h-[80vh] pt-20 px-4 text-center">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-3xl md:text-6xl font-black mb-6">Snackify: Your Go-To for Delicious Snacks</h1>
-      <p class="text-base md:text-xl mb-6">
-        Explore our wide selection of snacks and treats, perfect for any occasion. Order now and satisfy your cravings!
-      </p>
-      <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-400">
-        Order now
-      </a>
+  <div class="relative w-full h-screen -mt-4 z-0 text-white pt-20 overflow-hidden">
+    <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+      <source src="/vid.mp4" type="video/mp4" />
+      <img src="/bacik.jpg" alt="Fallback background" class="w-full h-full object-cover" />
+    </video>
+    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+    <div class="relative z-20 grid place-items-center h-full font-mono text-center px-4">
+      <div>
+        <h1 class="text-6xl font-black mb-6">Snackify: Your Go-To for Delicious Snacks</h1>
+        <p class="text-2xl max-w-2xl mx-auto mb-8">
+          Explore our wide selection of snacks and treats, perfect for any occasion. Order now and satisfy your cravings!
+        </p>
+        <a href="menu.html" class="bg-orange-500 text-white px-6 py-3 rounded-xl hover:bg-orange-400">
+          Order now
+        </a>
+      </div>
     </div>
   </div>
 
-  <!-- Popular Snacks -->
-  <section class="bg-white p-8 text-black">
+  <section class="bg-white p-8">
     <div class="text-center mb-8">
-      <h2 class="text-3xl font-bold">Popular Snacks</h2>
+      <h2 class="text-3xl font-bold text-black">Popular Snacks</h2>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div class="bg-white p-4 rounded-lg shadow text-center hover:bg-orange-500 hover:text-white">
+    <div class="flex flex-col md:flex-row justify-between gap-6 text-black">
+      <div class="flex-1 bg-white p-4 rounded-lg shadow text-black text-center hover:bg-orange-500 hover:text-white">
         <h3 class="text-xl font-semibold">Donut</h3>
-        <p class="text-gray-700">Recommended by Prathmesh</p>
+        <p class="text-base text-gray-700">Recommended by Prathmesh</p>
       </div>
-      <div class="bg-white p-4 rounded-lg shadow text-center hover:bg-red-500 hover:text-white">
+      <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-red-500 hover:text-white">
         <h3 class="text-xl font-semibold">Chai</h3>
-        <p class="text-gray-700">Recommended by Om</p>
+        <p class="text-base text-gray-700">Recommended by Om</p>
       </div>
-      <div class="bg-white p-4 rounded-lg shadow text-center hover:bg-blue-500 hover:text-white">
+      <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-blue-500 hover:text-white">
         <h3 class="text-xl font-semibold">Paneer Kulcha</h3>
-        <p class="text-gray-700">Recommended by Vaishnavi</p>
+        <p class="text-base text-gray-700">Recommended by Vaishnavi</p>
       </div>
-      <div class="bg-white p-4 rounded-lg shadow text-center hover:bg-purple-500 hover:text-white">
+      <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-purple-500 hover:text-white">
         <h3 class="text-xl font-semibold">Pizza</h3>
-        <p class="text-gray-700">Recommended by Ayushi</p>
+        <p class="text-base text-gray-700">Recommended by Ayushi</p>
       </div>
     </div>
   </section>
 
-  <!-- Call to Action -->
-  <section class="bg-orange-100 p-8 text-center text-black">
-    <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Snack</h2>
-    <p class="text-base font-mono mb-6">
-      Join thousands of happy customers and get your favorite snacks delivered to your door.
-    </p>
-    <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-400">
-      Order now
-    </a>
+  <section>
+    <div class="grid text-center text-2xl bg-orange-100 p-4">
+      <div class="p-10 text-3xl font-bold">Ready to Snack</div>
+      <p class="text-base font-mono">
+        Join thousands of happy customers and get your favorite snacks delivered to your door.
+      </p>
+      <div class="p-10">
+        <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-400 rounded-xl">
+          Order now
+        </a>
+      </div>
+    </div>
   </section>
-
 </body>
 </html>
