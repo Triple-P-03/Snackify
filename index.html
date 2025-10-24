@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snackify</title>
+  <link rel="icon" href="logo.png" type="image/x-icon" />
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-white font-sans">
+
+  <!-- Header -->
+  <header>
+    <nav class="flex flex-col md:flex-row justify-between items-center p-4 bg-white/90 text-black font-bold z-10">
+      <div class="flex items-center gap-2 mb-2 md:mb-0">
+        <img src="snacki.png" alt="logo" class="w-12 md:w-16" />
+        <div class="text-2xl">Snackify</div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-4 md:gap-6 items-center">
+        <a href="/">HOME</a>
+        <a href="menu.html">Menu</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="mt-2 md:mt-0">
+        <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-400">
+          Order now
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <div class="bg-[url('back.jpg')] bg-cover bg-center w-full text-white min-h-[80vh] pt-20 px-4 text-center">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl md:text-6xl font-black mb-6">Snackify: Your Go-To for Delicious Snacks</h1>
+      <p class="text-base md:text-xl mb-6">
+        Explore our wide selection of snacks and treats, perfect for any occasion. Order now and satisfy your cravings!
+      </p>
+      <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-400">
+        Order now
+      </a>
+    </div>
+  </div>
+
+  <!-- Popular Snacks -->
+  <section class="bg-white p-8 text-black">
+    <div class="text-center mb-8">
+      <h2 class="text-3xl font-bold">Popular Snacks</h2>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="bg-white p-4 rounded-lg shadow text-center hover:bg-orange-500 hover:text-white">
+        <h3 class="text-xl font-semibold">Donut</h3>
+        <p class="text-gray-700">Recommended by Prathmesh</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center hover:bg-red-500 hover:text-white">
+        <h3 class="text-xl font-semibold">Chai</h3>
+        <p class="text-gray-700">Recommended by Om</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center hover:bg-blue-500 hover:text-white">
+        <h3 class="text-xl font-semibold">Paneer Kulcha</h3>
+        <p class="text-gray-700">Recommended by Vaishnavi</p>
+      </div>
+      <div class="bg-white p-4 rounded-lg shadow text-center hover:bg-purple-500 hover:text-white">
+        <h3 class="text-xl font-semibold">Pizza</h3>
+        <p class="text-gray-700">Recommended by Ayushi</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="bg-orange-100 p-8 text-center text-black">
+    <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Snack</h2>
+    <p class="text-base font-mono mb-6">
+      Join thousands of happy customers and get your favorite snacks delivered to your door.
+    </p>
+    <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-400">
+      Order now
+    </a>
+  </section>
+
+</body>
+</html>

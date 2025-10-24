@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snackify - Order</title>
+    <link rel="icon" href="logo.png" type="image/x-icon" />
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-orange-50">
+    <header>
+        <nav class="flex justify-between items-center p-4 bg-white/90 font-bold relative z-10 shadow-md">
+            <div class="flex items-center gap-2">
+                <img src="snacki.png" alt="logo" width="60" />
+                <div class="text-2xl">Snackify</div>
+            </div>
+            <div class="hidden md:flex gap-6 justify-around">
+                <a href="/">HOME</a>
+                <a href="menu.html">Menu</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div>
+                <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-400">
+                    Order now
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <section class="flex justify-center items-center my-10">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-6 text-center">Place Your Order</h2>
+            <div class="mb-4">
+                <label for="name" class="block text-gray-700 mb-2">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50">
+            </div>
+            <div class="mb-6">
+                <label for="phone" class="block text-gray-700 mb-2">Phone No.</label>
+                <input type="number" id="phone" placeholder="Enter your phone number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400 bg-orange-50">
+            </div>
+            <div class="space-y-4 mb-6">
+                <div class="menu-item flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-orange-100" data-price="50.00" data-item-id="donut">
+                    <div class="flex items-center gap-4">
+                        <img src="donut.png" alt="donut" class="w-16 h-16 rounded-md object-cover">
+                        <span class="font-semibold text-lg item-name">Donut</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button type="button" onclick="updateCount('donut', -1)" class="bg-gray-300 text-black font-bold w-8 h-8 rounded-full hover:bg-gray-400">-</button>
+                        <span id="donutCount" class="font-bold text-lg w-6 text-center">0</span>
+                        <button type="button" onclick="updateCount('donut', 1)" class="bg-orange-400 text-white font-bold w-8 h-8 rounded-full hover:bg-orange-500">+</button>
+                    </div>
+                </div>
+                <div class="menu-item flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-amber-100" data-price="20.00" data-item-id="chai">
+                    <div class="flex items-center gap-4">
+                        <img src="chai.png" alt="chai" class="w-16 h-16 rounded-md object-cover">
+                        <span class="font-semibold text-lg item-name">Chai</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button type="button" onclick="updateCount('chai', -1)" class="bg-gray-300 text-black font-bold w-8 h-8 rounded-full hover:bg-gray-400">-</button>
+                        <span id="chaiCount" class="font-bold text-lg w-6 text-center">0</span>
+                        <button type="button" onclick="updateCount('chai', 1)" class="bg-orange-400 text-white font-bold w-8 h-8 rounded-full hover:bg-orange-500">+</button>
+                    </div>
+                </div>
+                <div class="menu-item flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-yellow-100" data-price="40.00" data-item-id="coffee">
+                    <div class="flex items-center gap-4">
+                        <img src="coffee.png" alt="coffee" class="w-16 h-16 rounded-md object-cover">
+                        <span class="font-semibold text-lg item-name">Coffee</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button type="button" onclick="updateCount('coffee', -1)" class="bg-gray-300 text-black font-bold w-8 h-8 rounded-full hover:bg-gray-400">-</button>
+                        <span id="coffeeCount" class="font-bold text-lg w-6 text-center">0</span>
+                        <button type="button" onclick="updateCount('coffee', 1)" class="bg-orange-400 text-white font-bold w-8 h-8 rounded-full hover:bg-orange-500">+</button>
+                    </div>
+                </div>
+                <div class="menu-item flex justify-between items-center p-3 bg-gray-50 rounded-lg hover:bg-red-100" data-price="120.00" data-item-id="pasta">
+                    <div class="flex items-center gap-4">
+                        <img src="pasta.png" alt="pasta" class="w-16 h-16 rounded-md object-cover">
+                        <span class="font-semibold text-lg item-name">Pasta</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button type="button" onclick="updateCount('pasta', -1)" class="bg-gray-300 text-black font-bold w-8 h-8 rounded-full hover:bg-gray-400">-</button>
+                        <span id="pastaCount" class="font-bold text-lg w-6 text-center">0</span>
+                        <button type="button" onclick="updateCount('pasta', 1)" class="bg-orange-400 text-white font-bold w-8 h-8 rounded-full hover:bg-orange-500">+</button>
+                    </div>
+                </div>
+            </div>
+            <div class="my-6 space-y-4">
+                <div class="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                    <input type="checkbox" id="isParcel" class="h-5 w-5 rounded text-orange-500 focus:ring-orange-400">
+                    <label for="isParcel" class="font-semibold text-gray-700">Make it a Parcel</label>
+                </div>
+                <div>
+                    <label class="block font-semibold text-gray-700 mb-2">Payment Method</label>
+                    <div class="flex justify-around p-3 bg-gray-50 rounded-lg">
+                        <div class="flex items-center gap-2">
+                            <input type="radio" id="paymentUpi" name="payment" value="UPI" checked class="h-4 w-4 text-orange-500 focus:ring-orange-400">
+                            <label for="paymentUpi">UPI</label>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="radio" id="paymentCard" name="payment" value="Card" class="h-4 w-4 text-orange-500 focus:ring-orange-400">
+                            <label for="paymentCard">Card</label>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <input type="radio" id="paymentCash" name="payment" value="Cash" class="h-4 w-4 text-orange-500 focus:ring-orange-400">
+                            <label for="paymentCash">Cash</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-between items-center mt-6 pt-4 border-t-2">
+                <span class="font-bold text-xl">Total:</span>
+                <span class="font-bold text-xl">₹<span id="totalPrice">0.00</span></span>
+            </div>
+            <button type="button" onclick="submitOrder()" class="w-full mt-6 bg-green-500 text-white py-3 rounded-lg font-bold hover:bg-green-600 text-lg">
+                Submit Order
+            </button>
+        </div>
+    </section>
+    <script src="menu.js"></script>
+</body>
+</html>
