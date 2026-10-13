@@ -54,6 +54,7 @@ function createOrderRateLimiter() {
 function createApp({
   ordersCollection,
   isDatabaseReady = () => true,
+  serveFrontend = true,
   publicDir = path.resolve(__dirname, '..'),
 } = {}) {
   const app = express();
@@ -96,15 +97,19 @@ function createApp({
     }
   });
 
-  const sendPublicFile = (file) => (req, res, next) => {
-    res.sendFile(file, { root: publicDir }, (error) => {
-      if (error) next(error);
-    });
-  };
+  if (serveFrontend) {
+    const sendPublicFile = (file) => (req, res, next) => {
+      res.sendFile(file, { root: publicDir }, (error) => {
+        if (error) next(error);
+      });
+    };
 
-  app.get('/', sendPublicFile('index.html'));
-  for (const file of PUBLIC_FILES) {
-    app.get(`/${file}`, sendPublicFile(file));
+    app.get('/', sendPublicFile('index.html'));
+    for (const file of PUBLIC_FILES) {
+      app.get(`/${file}`, sendPublicFile(file));
+    }
+  } else {
+    app.get('/', (req, res) => res.json({ message: 'Snackify API running successfully.' }));
   }
 
   app.use((req, res) => res.status(404).json({ message: 'Not found.' }));

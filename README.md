@@ -22,38 +22,48 @@ and stores accepted orders in MongoDB.
    npm start
    ```
 
-   Open <http://127.0.0.1:3000/>. The frontend is intentionally unchanged.
+   Open <http://127.0.0.1:3000/>. Frontend serving is enabled by default;
+   set `SERVE_FRONTEND=false` to run the API alone. The frontend is unchanged.
 
 For development, use `npm run dev` to restart the server when backend files
 change.
 
 ## Deploy on Render
 
-This repository includes `render.yaml` for a Render Web Service. In Render,
-create a new Blueprint from the repository, or create a Web Service with:
+This repository includes `render.yaml` for a backend-only Render Web Service.
+In Render, create a new Blueprint from the repository, or create a Web Service
+with:
 
 - **Build Command:** `npm install`
 - **Start Command:** `npm start`
 - **Health Check Path:** `/health`
+- **Environment Variable:** `SERVE_FRONTEND=false` (for a manually created Web Service)
 
 Add `MONGODB_URI` as a Render environment variable and enter the MongoDB Atlas
 connection string there. Do not commit it to the repository. `MONGODB_DB` is
 set to `snackify` by the Blueprint. Render supplies `PORT` automatically, and
 the server listens on `0.0.0.0` by default as required by Render.
+`SERVE_FRONTEND=false` is set by the Blueprint, so `GET /` returns
+`{"message":"Snackify API running successfully."}` and frontend files are not
+registered as routes.
 
 In MongoDB Atlas, add access for the Render service's outbound IP addresses.
 For a service whose outbound addresses can change, Atlas may require `0.0.0.0/0`;
 use a strong, rotated database credential and least-privilege database user if
 you choose that option.
 
-After deployment, verify:
+After deployment, verify `GET /` returns the API message and check readiness at:
 
 ```text
 https://<your-render-service>.onrender.com/health
 ```
 
-The frontend and API are served from the same Render URL, so no frontend URL
-or CORS setting is needed.
+If the existing frontend is hosted separately, its relative
+`fetch('/submit-order')` call targets the frontend host. Configure the frontend
+host with a proxy/rewrite to the Render service, or change/configure the
+frontend's API URL to point at Render (which would require origin-specific CORS
+for a cross-origin request). This backend does not enable broad CORS, and the
+frontend files are intentionally unchanged.
 
 ## API
 

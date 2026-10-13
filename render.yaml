@@ -11,3 +11,5 @@ services:
         sync: false
       - key: MONGODB_DB
         value: snackify
+      - key: SERVE_FRONTEND
+        value: "false"

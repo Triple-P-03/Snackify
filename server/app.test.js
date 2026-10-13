@@ -33,10 +33,11 @@ function request(server, options = {}, body) {
   });
 }
 
-async function withApp({ ordersCollection, isDatabaseReady = () => true } = {}, callback) {
+async function withApp({ ordersCollection, isDatabaseReady = () => true, serveFrontend = true } = {}, callback) {
   const app = createApp({
     ordersCollection,
     isDatabaseReady,
+    serveFrontend,
     publicDir: path.resolve(__dirname, '..'),
   });
   const server = app.listen(0, '127.0.0.1');
@@ -126,7 +127,7 @@ test('POST /submit-order returns JSON errors for empty carts and wrong content t
   });
 });
 
-test('health reflects database readiness and frontend files remain available', async () => {
+test('health reflects database readiness and frontend files remain available by default', async () => {
   await withApp({ ordersCollection: {}, isDatabaseReady: () => false }, async (server) => {
     const health = await request(server, { path: '/health' });
     assert.equal(health.statusCode, 503);
@@ -134,5 +135,42 @@ test('health reflects database readiness and frontend files remain available', a
     const home = await request(server, { path: '/' });
     assert.equal(home.statusCode, 200);
     assert.match(home.headers['content-type'], /text\/html/);
+
+    const menu = await request(server, { path: '/menu.html' });
+    assert.equal(menu.statusCode, 200);
+    assert.match(menu.headers['content-type'], /text\/html/);
+  });
+});
+
+test('backend-only mode returns an API message, keeps API routes, and hides frontend files', async () => {
+  const collection = {
+    async insertOne() { return { acknowledged: true, insertedId: 'backend-only-order' }; },
+  };
+  await withApp({ ordersCollection: collection, serveFrontend: false }, async (server) => {
+    const home = await request(server, { path: '/' });
+    assert.equal(home.statusCode, 200);
+    assert.match(home.headers['content-type'], /application\/json/);
+    assert.deepEqual(home.json(), { message: 'Snackify API running successfully.' });
+
+    for (const file of ['/index.html', '/menu.html', '/menu.js', '/logo.png']) {
+      const frontendFile = await request(server, { path: file });
+      assert.equal(frontendFile.statusCode, 404, file);
+      assert.deepEqual(frontendFile.json(), { message: 'Not found.' });
+    }
+
+    const health = await request(server, { path: '/health' });
+    assert.equal(health.statusCode, 200);
+    assert.deepEqual(health.json(), { message: 'OK' });
+
+    const order = await request(server, {
+      path: '/submit-order',
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    }, JSON.stringify(validOrder()));
+    assert.equal(order.statusCode, 201);
+    assert.deepEqual(order.json(), {
+      message: 'Order placed successfully.',
+      orderId: 'backend-only-order',
+    });
   });
 });

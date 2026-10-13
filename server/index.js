@@ -6,12 +6,23 @@ const { createDatabase } = require('./database');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const DEFAULT_PORT = 3000;
+const DEFAULT_SERVE_FRONTEND = true;
 // Render requires public services to listen on all interfaces. This also works
 // for local development; use HOST=127.0.0.1 locally when loopback-only access
 // is preferred.
 const DEFAULT_HOST = '0.0.0.0';
 
 class ConfigurationError extends Error {}
+
+function parseBoolean(value, name, defaultValue) {
+  if (value === undefined || value === '') return defaultValue;
+  if (typeof value === 'boolean') return value;
+
+  const normalized = String(value).trim().toLowerCase();
+  if (normalized === 'true') return true;
+  if (normalized === 'false') return false;
+  throw new ConfigurationError(`${name} must be true or false.`);
+}
 
 function loadConfig(env = process.env) {
   const rawUri = env.MONGODB_URI;
@@ -47,6 +58,7 @@ function loadConfig(env = process.env) {
     dbName: env.MONGODB_DB,
     port,
     host,
+    serveFrontend: parseBoolean(env.SERVE_FRONTEND, 'SERVE_FRONTEND', DEFAULT_SERVE_FRONTEND),
     publicDir: PROJECT_ROOT
   };
 }
@@ -89,6 +101,7 @@ async function startServer({
     const app = makeApp({
       ordersCollection: database.ordersCollection,
       isDatabaseReady: database.isDatabaseReady,
+      serveFrontend: config.serveFrontend,
       publicDir: config.publicDir
     });
     server = await listen(app, config.port, config.host);
