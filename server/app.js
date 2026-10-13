@@ -58,6 +58,9 @@ function createApp({
 } = {}) {
   const app = express();
   app.disable('x-powered-by');
+  // Render terminates TLS and forwards requests through one trusted proxy.
+  // This keeps req.ip useful for the small in-memory order rate limiter.
+  app.set('trust proxy', 1);
 
   app.get('/health', async (req, res) => {
     try {

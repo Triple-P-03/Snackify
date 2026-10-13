@@ -6,7 +6,10 @@ const { createDatabase } = require('./database');
 
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 const DEFAULT_PORT = 3000;
-const DEFAULT_HOST = '127.0.0.1';
+// Render requires public services to listen on all interfaces. This also works
+// for local development; use HOST=127.0.0.1 locally when loopback-only access
+// is preferred.
+const DEFAULT_HOST = '0.0.0.0';
 
 class ConfigurationError extends Error {}
 
