@@ -1,18 +1,12 @@
 {
   "name": "snackify",
   "version": "1.0.0",
-  "private": true,
+  "description": "Snackify Frontend Application",
   "scripts": {
-    "start": "node server/index.js",
-    "dev": "node --watch server/index.js",
-    "test": "node --test"
+    "start": "npx serve ."
   },
-  "engines": {
-    "node": ">=22"
-  },
-  "dependencies": {
-    "dotenv": "^16.6.1",
-    "express": "^5.1.0",
-    "mongodb": "^6.20.0"
+  "dependencies": {},
+  "devDependencies": {
+    "serve": "^14.2.0"
   }
 }
