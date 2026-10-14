@@ -3,85 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse Snackify's menu of snacks and treats, discover popular picks, and place an order through our connected ordering service." />
   <title>Snackify</title>
-  <link rel="icon" href="logo.png" type="image/x-icon" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="logo.png" type="image/png" />
+  <link rel="stylesheet" href="styles.css" />
+  <script src="hero.js" defer></script>
 </head>
-<body class="bg-black">
+<body class="bg-black text-gray-900">
+  <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-3 focus:text-orange-800 focus:outline-none focus:ring-2 focus:ring-orange-700 focus:ring-offset-2">Skip to main content</a>
   <header>
-    <nav class="flex justify-between items-center p-4 bg-white/90 font-bold relative z-10">
+    <nav aria-label="Main navigation" class="flex flex-wrap justify-between items-center gap-x-3 gap-y-2 p-4 bg-white/90 font-bold relative z-10">
       <div class="flex items-center gap-2">
-        <img src="snacki.png" alt="logo" width="60" />
-        <div class="text-2xl">Snackify</div>
+        <img src="snacki.png" alt="" width="60" class="w-12 h-auto sm:w-[60px]" />
+        <div class="text-xl sm:text-2xl">Snackify</div>
       </div>
-      <div class="flex gap-6 justify-around">
-        <a href="/">HOME</a>
-        <a href="menu.html">Menu</a>
-        <a href="#contact">Contact</a>
+      <div class="order-last flex w-full gap-2 justify-center sm:gap-6 md:order-none md:w-auto">
+        <a href="index.html" aria-current="page" class="inline-flex min-h-[44px] items-center rounded px-3 py-2 text-orange-800 underline underline-offset-4 hover:text-orange-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2">Home</a>
+        <a href="menu.html" class="inline-flex min-h-[44px] items-center rounded px-3 py-2 hover:text-orange-800 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2">Menu</a>
+        <a href="#about" class="inline-flex min-h-[44px] items-center rounded px-3 py-2 hover:text-orange-800 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2">About</a>
       </div>
-      <div>
-        <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded-xl hover:bg-orange-400">
+      <div class="shrink-0">
+        <a href="menu.html" class="inline-flex min-h-[44px] items-center bg-orange-700 text-white px-3 py-2 text-sm sm:px-4 sm:text-base rounded-xl hover:bg-orange-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2">
           Order now
         </a>
       </div>
     </nav>
   </header>
 
-  <div class="relative w-full h-screen -mt-4 z-0 text-white pt-20 overflow-hidden">
-    <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
-      <source src="/vid.mp4" type="video/mp4" />
-      <img src="/bacik.jpg" alt="Fallback background" class="w-full h-full object-cover" />
-    </video>
-    <div class="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
-    <div class="relative z-20 grid place-items-center h-full font-mono text-center px-4">
-      <div>
-        <h1 class="text-6xl font-black mb-6">Snackify: Your Go-To for Delicious Snacks</h1>
-        <p class="text-2xl max-w-2xl mx-auto mb-8">
-          Explore our wide selection of snacks and treats, perfect for any occasion. Order now and satisfy your cravings!
+  <main id="main-content" tabindex="-1">
+    <section id="hero" aria-label="Chocolate donut video, animated by scrolling" class="hero" data-hero data-media="poster">
+      <div id="hero-scene" class="hero__scene">
+        <div class="hero__media" aria-hidden="true">
+          <video id="hero-video" class="hero__video" src="donut.mp4" muted playsinline preload="auto" disablepictureinpicture disableremoteplayback tabindex="-1" aria-hidden="true"></video>
+        </div>
+      </div>
+    </section>
+
+    <section aria-labelledby="popular-heading" class="home-section home-section--popular bg-white px-4 py-8 sm:px-8">
+      <div class="text-center mb-8">
+        <h1 id="popular-heading" class="text-3xl font-bold text-black">Popular Snacks</h1>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between gap-6 text-black">
+        <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-orange-50">
+          <h3 class="text-xl font-semibold">Donut</h3>
+          <p class="text-base text-gray-700">Recommended by Prathmesh</p>
+        </div>
+        <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-orange-50">
+          <h3 class="text-xl font-semibold">Chai</h3>
+          <p class="text-base text-gray-700">Recommended by Om</p>
+        </div>
+        <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-orange-50">
+          <h3 class="text-xl font-semibold">Paneer Kulcha</h3>
+          <p class="text-base text-gray-700">Recommended by Vaishnavi</p>
+        </div>
+        <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-orange-50">
+          <h3 class="text-xl font-semibold">Pizza</h3>
+          <p class="text-base text-gray-700">Recommended by Ayushi</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-heading" class="home-section bg-white px-4 py-10 sm:px-8">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 id="about-heading" class="text-3xl font-bold mb-4">About Snackify</h2>
+        <p class="text-base sm:text-lg leading-relaxed text-gray-700">
+          Snackify brings snacks and treats together in one easy-to-browse menu. Explore the popular picks above, then open the menu to see the available items and prices.
         </p>
-        <a href="menu.html" class="bg-orange-500 text-white px-6 py-3 rounded-xl hover:bg-orange-400">
-          Order now
-        </a>
+        <p class="mt-4 text-base sm:text-lg leading-relaxed text-gray-700">
+          When you're ready, choose your snacks and quantities and complete the order form on the menu page. Your order is submitted to Snackify's existing external ordering service; check the confirmation or error message there for the result.
+        </p>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <section class="bg-white p-8">
-    <div class="text-center mb-8">
-      <h2 class="text-3xl font-bold text-black">Popular Snacks</h2>
-    </div>
-    <div class="flex flex-col md:flex-row justify-between gap-6 text-black">
-      <div class="flex-1 bg-white p-4 rounded-lg shadow text-black text-center hover:bg-orange-500 hover:text-white">
-        <h3 class="text-xl font-semibold">Donut</h3>
-        <p class="text-base text-gray-700">Recommended by Prathmesh</p>
-      </div>
-      <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-red-500 hover:text-white">
-        <h3 class="text-xl font-semibold">Chai</h3>
-        <p class="text-base text-gray-700">Recommended by Om</p>
-      </div>
-      <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-blue-500 hover:text-white">
-        <h3 class="text-xl font-semibold">Paneer Kulcha</h3>
-        <p class="text-base text-gray-700">Recommended by Vaishnavi</p>
-      </div>
-      <div class="flex-1 bg-white p-4 rounded-lg shadow text-center hover:bg-purple-500 hover:text-white">
-        <h3 class="text-xl font-semibold">Pizza</h3>
-        <p class="text-base text-gray-700">Recommended by Ayushi</p>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="grid text-center text-2xl bg-orange-100 p-4">
-      <div class="p-10 text-3xl font-bold">Ready to Snack</div>
-      <p class="text-base font-mono">
-        Join thousands of happy customers and get your favorite snacks delivered to your door.
+    <section aria-labelledby="ready-heading" class="home-section home-section--ready grid text-center bg-orange-100 px-4 py-10">
+      <h2 id="ready-heading" class="text-3xl font-bold mb-4">Ready to Snack</h2>
+      <p class="text-base font-mono max-w-2xl mx-auto">
+        Find your next favorite snack. Browse the menu and choose what you're craving.
       </p>
-      <div class="p-10">
-        <a href="menu.html" class="bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-400 rounded-xl">
+      <div class="mt-8">
+        <a href="menu.html" class="inline-flex min-h-[44px] items-center bg-orange-700 text-white px-4 py-3 rounded-xl hover:bg-orange-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-700 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-100">
           Order now
         </a>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 </body>
 </html>

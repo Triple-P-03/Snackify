@@ -5,3 +5,8 @@ node_modules/
 *.log
 logs/
 coverage/
+dist/
+test-results/
+playwright-report/
+/styles.css
+/config.js

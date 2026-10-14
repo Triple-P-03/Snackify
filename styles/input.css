@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :focus-visible {
+    outline: 2px solid #c2410c;
+    outline-offset: 4px;
+  }
+
+  input[type='checkbox'],
+  input[type='radio'] {
+    accent-color: #c2410c;
+  }
+}
+
+#orderStatus[data-state='error'] {
+  color: #991b1b;
+}
+
+#orderStatus[data-state='success'] {
+  color: #166534;
+}
+
+body {
+  position: relative;
+  isolation: isolate;
+  background: #f8f1ea;
+}
+
+/* The hero is intentionally minimal: one centered video and generous scroll space. */
+.hero {
+  position: relative;
+  z-index: 0;
+  min-height: 175vh;
+  min-height: 175svh;
+  overflow: clip;
+  background: transparent;
+}
+
+.hero__scene {
+  position: sticky;
+  top: 0;
+  display: grid;
+  min-height: 100vh;
+  min-height: 100svh;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: transparent;
+}
+
+.hero__media {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  height: 100svh;
+  opacity: 1;
+  transform: translate3d(0, calc(var(--hero-progress, 0) * -1rem), 0);
+  filter: none;
+  will-change: transform;
+}
+
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.hero__video {
+  opacity: 1;
+  transition: opacity 180ms ease;
+  width: 100%;
+  max-width: none;
+  min-width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.hero[data-media='video'] .hero__video {
+  opacity: 1;
+}
+
+.home-section {
+  position: relative;
+  z-index: 1;
+  background: rgb(255 255 255 / 90%);
+  padding: clamp(5rem, 10vw, 9rem) clamp(1.25rem, 5.5vw, 6rem);
+  scroll-margin-top: 2rem;
+}
+
+.home-section--ready {
+  background: rgb(255 237 213 / 90%);
+}
+
+.home-section--popular > div:last-child > div {
+  padding-block: 2rem;
+  border: 1px solid #ffedd5;
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 140vh;
+    min-height: 140svh;
+  }
+
+  .hero__media {
+    width: 100%;
+    height: 100svh;
+  }
+}
+
+/* A non-sticky, content-sized scene keeps every control reachable in landscape/zoom. */
+@media (max-height: 600px) {
+  .hero {
+    min-height: 0;
+  }
+
+  .hero__scene {
+    position: relative;
+    min-height: 100svh;
+  }
+}
+
+/* Reduced-motion visitors still see the first video frame without scroll movement. */
+@media (prefers-reduced-motion: reduce) {
+  .hero__media {
+    transform: none;
+  }
+}
