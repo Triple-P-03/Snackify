@@ -65,6 +65,11 @@ frontend's API URL to point at Render (which would require origin-specific CORS
 for a cross-origin request). This backend does not enable broad CORS, and the
 frontend files are intentionally unchanged.
 
+For this repository's Vercel deployment, `vercel.json` provides that proxy:
+`/submit-order` is forwarded to `https://snackify-oiz0.onrender.com/submit-order`
+and `/health` is forwarded to the corresponding Render health endpoint. The
+frontend can therefore keep its existing relative `fetch('/submit-order')` call.
+
 ## API
 
 - `GET /health` returns `200` when MongoDB is reachable and `503` otherwise.
